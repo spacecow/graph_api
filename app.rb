@@ -26,4 +26,9 @@ class GraphApi < Sinatra::Base
   post '/universes' do
     Universe.create(params).to_json
   end
+
+  delete '/universes' do
+    Universe.delete_all
+    {}.to_json
+  end
 end
