@@ -1,10 +1,7 @@
 require 'active_record'
-require 'yaml'
 
 task :environment do
-  ENV['RACK_ENV'] = "test"
-  databases = YAML.load_file "config/database.yml"
-  ActiveRecord::Base.establish_connection databases[ENV['RACK_ENV']]
+  require './config/database'
 end
 
 namespace :db do
