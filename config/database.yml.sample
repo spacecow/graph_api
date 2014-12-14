@@ -1,0 +1,3 @@
+test:
+  adapter: sqlite3
+  database: db/graphapi_test.sqlite3.db 

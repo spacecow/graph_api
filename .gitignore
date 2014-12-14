@@ -1,2 +1,6 @@
 .bundle/
 vendor/
+*.swo
+*.swp
+db/*.sqlite3
+config/database.yml
