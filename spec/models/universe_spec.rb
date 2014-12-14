@@ -13,7 +13,7 @@ describe Universe do
     let(:title){ nil }
     it{ expect{@creation.call}.to raise_error{|e|
       expect(e).to be_a ActiveRecord::StatementInvalid
-      expect(e.message).to match /title may not be NULL/ 
+      expect(e.message).to match /doesn't have a default value/ 
     }} 
   end
 
@@ -21,7 +21,7 @@ describe Universe do
     before{ @creation.call }
     it{ expect{@creation.call}.to raise_error{|e|
       expect(e).to be_a ActiveRecord::RecordNotUnique
-      expect(e.message).to match /column title is not unique/ 
+      expect(e.message).to match /Duplicate entry/ 
     }} 
   end
 
