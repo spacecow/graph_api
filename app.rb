@@ -20,7 +20,7 @@ class GraphApi < Sinatra::Base
   #end
 
   get '/universes' do
-    {universes:[{title:'The Malazan Empire'}]}.to_json
+    Universe.all.to_json
   end
 
   post '/universes' do
