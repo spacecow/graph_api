@@ -10,7 +10,7 @@ describe 'POST /universes' do
       Universe,:count).by(1) }
       
     context "response" do
-      it{ expect(body).to eq({
+      it{ expect(body["universe"]).to eq({
         "id" => Universe.first.id,
         "title" => 'Malazan' }) }
     end

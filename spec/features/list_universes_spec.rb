@@ -7,7 +7,7 @@ describe 'GET /universes' do
   context "success" do
     before{ Universe.create title:'Malazan' }
     context "response" do
-      it{ expect(body).to eq([{
+      it{ expect(body["universes"]).to eq([{
         "id" => Universe.first.id,
         "title" => 'Malazan' }]) }
     end
