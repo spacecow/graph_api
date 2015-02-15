@@ -6,13 +6,15 @@ require 'json'
 require 'pry'
 
 class GraphApi < Sinatra::Base
+  class ValidationError; end
+
   configure do 
     set :show_exceptions, false
     set :raise_errors, false
   end
 
   error ActiveRecord::StatementInvalid do |e|
-    {error:e.message, type:e.class.to_s}.to_json
+    {error:e.message, type:ValidationError.to_s}.to_json
   end
 
   #error do |e|
