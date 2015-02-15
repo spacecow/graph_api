@@ -5,10 +5,15 @@ describe 'DELETE /universes' do
   let(:body){ JSON.parse function.body }
 
   context "success" do
-    before{ FactoryGirl.create :universe }
+    let(:universe){ FactoryGirl.create :universe, title:'Malazan' }
+    before{ universe }
+
     it{ expect{function}.to change(
       Universe,:count).by(-1) }
-    it{ expect(body).to be_empty }
+    it{ expect(body["universes"].first["universe"]).to eq({
+      "id" => universe.id,
+      "title" => 'Malazan' }) }
+
     after{ Universe.delete_all }
   end
 

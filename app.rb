@@ -12,14 +12,13 @@ class GraphApi < Sinatra::Base
   end
 
   error ActiveRecord::StatementInvalid do |e|
-    #halt 500, {error:e.message, type:e.class}.to_json
-    {error:e.message, type:e.class}.to_json
+    {error:e.message, type:e.class.to_s}.to_json
   end
 
-  error do |e|
-    #halt 500, {error:e.message, type:e.class}.to_json
-    {error:e.message, type:e.class}.to_json
-  end
+  #error do |e|
+  #  #halt 500, {error:e.message, type:e.class}.to_json
+  #  {error:e.message, type:e.class}.to_json
+  #end
 
   get '/universes' do
     {universes:Universe.all}.to_json
@@ -30,7 +29,8 @@ class GraphApi < Sinatra::Base
   end
 
   delete '/universes' do
+    ret = Universe.all.to_a
     Universe.delete_all
-    {}.to_json
+    {universes:ret.map{|e| {universe:e}}}.to_json
   end
 end
