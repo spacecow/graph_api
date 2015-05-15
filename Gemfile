@@ -13,4 +13,5 @@ end
 group :test do
   gem 'rack-test'
   gem 'factory_girl'
+  gem 'rspec-its'
 end
